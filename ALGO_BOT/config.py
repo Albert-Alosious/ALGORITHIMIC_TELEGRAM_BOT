@@ -31,3 +31,6 @@ ORDER_HEADERS = [
 
 # WebSocket configuration for communicating with the trader engine.
 WS_URL = os.getenv("WS_URL", "ws://localhost:8000/ws")
+
+# Optional chat id to notify when bot starts.
+STARTUP_CHAT_ID = os.getenv("STARTUP_CHAT_ID")

@@ -7,7 +7,7 @@ from contextlib import suppress
 
 from telegram.ext import Application
 
-from config import TOKEN
+from config import STARTUP_CHAT_ID, TOKEN
 from handlers.orders import register_order_handlers
 from handlers.system import register_system_handlers
 from handlers.ui import register_ui_handlers
@@ -51,6 +51,11 @@ async def main() -> None:
         await app.start()
         if app.updater:
             await app.updater.start_polling()
+        if STARTUP_CHAT_ID:
+            try:
+                await app.bot.send_message(chat_id=int(STARTUP_CHAT_ID), text="🤖 Bot is online and ready!")
+            except Exception:
+                logging.info("Bot start notification could not be sent.")
         logging.info("Bot running. Type 'exit' in this terminal to stop.")
         await stop_event.wait()
         logging.info("Exit signal received. Shutting down bot.")
