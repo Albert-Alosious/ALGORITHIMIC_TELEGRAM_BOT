@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment files
+.env
+ALGO_BOT/.env
+TRADER/.env
+
+# Logs / runtime data
+*.log
+ALGO_BOT/res/ORDER_LIST.csv
+
+# macOS
+.DS_Store
+
+# Docker artifacts (if any)
+*.pid
+

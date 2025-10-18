@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  trader:
+    build:
+      context: ./TRADER
+      dockerfile: Dockerfile
+    container_name: trader
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  bot:
+    build:
+      context: ./ALGO_BOT
+      dockerfile: Dockerfile
+    container_name: algo_bot
+    depends_on:
+      - trader
+    env_file:
+      - ALGO_BOT/.env
+    environment:
+      WS_URL: "ws://trader:8000/ws"
+    volumes:
+      - ./ALGO_BOT/res:/app/res
